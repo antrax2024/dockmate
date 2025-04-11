@@ -1,4 +1,11 @@
-from kernel import cl, getContainers, checkForNewVersion, ctToWatch, printLine
+from kernel import (
+    cl,
+    getContainers,
+    checkForNewVersion,
+    ctToWatch,
+    printLine,
+    recreateContainer,
+)
 import time
 
 
@@ -13,21 +20,14 @@ def main() -> None:
                 cl.log("[bold yellow]Watch: [/bold yellow] [green]True[/green]")
                 if checkForNewVersion(container.image.tags[0]):
                     cl.log(
-                        f"[bold yellow]Action: [/bold yellow] [green]Stopping container[/green] [ {container.name}]"
+                        f"[bold yellow]Action: [/bold yellow] [green]Recreating container[/green] [ {container.name}]"
                     )
-                    container.stop()  # Stop the container
-                    container.recreate()  # Recreate the container
+                    recreateContainer(container=container)
+                    cl.log("[[bold green]OK[/ bold green]]")
 
             else:
                 cl.log("[bold yellow]Watch: [/bold yellow] [red]False[/red]")
 
-            # cl.log(
-            #     f"[bold yellow]Image:[/bold yellow] {container.image.tags[0] if container.image.tags else 'No tags'}"
-            # )
-            # cl.log(f"[bold yellow]Status:[/bold yellow]  {container.status}")
-
-            # cl.log(f"[bold yellow]Created:[/bold yellow] {container.attrs['Created']}")
-            # cl.log(f"[bold yellow]Ports:[/bold yellow] {container.ports}")
             cl.log("waiting for next check...")
             printLine()
             time.sleep(5)
