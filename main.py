@@ -11,7 +11,13 @@ def main() -> None:
             cl.log(f"[bold yellow]Checking:[/bold yellow] {container.name}")
             if container.name in ctToWatch:
                 cl.log("[bold yellow]Watch: [/bold yellow] [green]True[/green]")
-                checkForNewVersion(container.image.tags[0])
+                if checkForNewVersion(container.image.tags[0]):
+                    cl.log(
+                        f"[bold yellow]Action: [/bold yellow] [green]Stopping container[/green] [ {container.name}]"
+                    )
+                    container.stop()  # Stop the container
+                    container.recreate()  # Recreate the container
+
             else:
                 cl.log("[bold yellow]Watch: [/bold yellow] [red]False[/red]")
 
