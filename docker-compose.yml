@@ -1,10 +1,8 @@
 services:
     web:
-        container_name: antraxapi
+        container_name: dockerwatch
         restart: always
 
         build:
             context: .
             dockerfile: Dockerfile
-        ports:
-            - "8080:8080"
