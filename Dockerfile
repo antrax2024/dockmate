@@ -1,6 +1,8 @@
 FROM python:3.12-slim-bookworm
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
+ENV TZ=America/Sao_Paulo
+
 # Set the working directory
 WORKDIR /app
 
