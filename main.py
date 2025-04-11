@@ -5,19 +5,22 @@ from rich.console import Console
 
 load_dotenv()  # Load environment variables from .env file
 cl = Console()
-
+client: docker.DockerClient = docker.from_env()
 ctToWatch: list[str] = os.environ.get("CONTAINERS_TO_WATCH").split(",")
 
 
 def main() -> None:
-    client: docker.DockerClient = docker.from_env()
     containers = client.containers.list()
-
     for container in containers:
         cl.print(f"[bold yellow]ID[/bold yellow]: {container.id}")
         cl.print(f"[bold yellow]Name:[/bold yellow] {container.name}")
         if container.name in ctToWatch:
             cl.print("[bold yellow]Watch: [/bold yellow] [green]True[/green]")
+            # Aqui tenho um container que precisa ser monitorado e atualizado
+            checkForNewVersion(container.image.tags[0])
+            # Aqui tenho que checar se há uma nova versão do container
+            # Se houver, atualizar o container
+            # Se não houver, continuar monitorando
         else:
             cl.print("[bold yellow]Watch: [/bold yellow] [red]False[/red]")
 
@@ -31,8 +34,15 @@ def main() -> None:
         cl.print("=" * 40)
 
 
-def checkForNewVersion(image: docker.models.images.Image):
-    pass
+def checkForNewVersion(imageName):
+    local_image = client.images.get(imageName)
+
+    local_digest = local_image.attrs["RepoDigests"][0].split("@")[1]
+    cl.print(f"[bold yellow]Local Digest[/bold yellow]: {local_digest}")
+
+    latest_image = client.images.pull(imageName)
+    latest_digest = latest_image.attrs["RepoDigests"][0].split("@")[1]
+    cl.print(f"[bold yellow]Latest Digest[/bold yellow]: {latest_digest}")
 
 
 if __name__ == "__main__":
