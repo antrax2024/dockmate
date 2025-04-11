@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 load_dotenv()  # Load environment variables from .env file
 
 
-def main():
+def main() -> None:
     client: docker.DockerClient = docker.from_env()
     containers = client.containers.list()
 
