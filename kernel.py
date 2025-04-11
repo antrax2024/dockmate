@@ -114,6 +114,6 @@ def checkForNewVersion(imageName):
 
 
 if __name__ == "__main__":
-    container = client.containers.get("homepage")
-    # cl.log(container.attrs)
-    recreateContainer(container)
+    # container = client.containers.get("homepage")
+    # recreateContainer(container)
+    pass
