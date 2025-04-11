@@ -6,7 +6,7 @@ from rich.console import Console
 load_dotenv()  # Load environment variables from .env file
 cl = Console()
 
-ctToWatch: list[str] = os.environ.get("CONTAINERS_TO_WATCH")
+ctToWatch: list[str] = os.environ.get("CONTAINERS_TO_WATCH").split(",")
 
 
 def main() -> None:
@@ -14,15 +14,20 @@ def main() -> None:
     containers = client.containers.list()
 
     for container in containers:
-        cl.print(f"ID: {container.id}")
-        cl.print(f"Name: {container.name}")
-        cl.print(
-            f"Image: {container.image.tags[0] if container.image.tags else 'No tags'}"
-        )
-        cl.print(f"Status: {container.status}")
+        cl.print(f"[bold yellow]ID[/bold yellow]: {container.id}")
+        cl.print(f"[bold yellow]Name:[/bold yellow] {container.name}")
+        if container.name in ctToWatch:
+            cl.print("[bold yellow]Watch: [/bold yellow] [green]True[/green]")
+        else:
+            cl.print("[bold yellow]Watch: [/bold yellow] [red]False[/red]")
 
-        cl.print(f"Created: {container.attrs['Created']}")
-        cl.print(f"Ports: {container.ports}")
+        cl.print(
+            f"[bold yellow]Image:[/bold yellow] {container.image.tags[0] if container.image.tags else 'No tags'}"
+        )
+        cl.print(f"[bold yellow]Status:[/bold yellow]  {container.status}")
+
+        cl.print(f"[bold yellow]Created:[/bold yellow] {container.attrs['Created']}")
+        cl.print(f"[bold yellow]Ports:[/bold yellow] {container.ports}")
         cl.print("=" * 40)
 
 
