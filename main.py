@@ -15,10 +15,9 @@ TIME_MAIN_LOOP = int(os.getenv(key="TIME_MAIN_LOOP"))
 
 def main() -> None:
     while True:
-        with cl.status("Working..."):  # Start a status bar
+        with cl.status(status="Working..."):  # Start a status bar
             containers = getContainers()
             for container in containers:
-                # cl.log(f"[bold yellow]ID[/bold yellow]: {container.id}")
                 printLine()
                 cl.log(f"[bold yellow]Checking:[/bold yellow] {container.name}")
                 if container.name in ctToWatch:
