@@ -38,14 +38,14 @@ def checkForNewVersion(imageName):
     local_image = client.images.get(imageName)
 
     local_digest = local_image.attrs["RepoDigests"][0].split("@")[1]
-    cl.print(f"[bold yellow]Local Digest[/bold yellow]: {local_digest}")
+    # cl.print(f"[bold yellow]Local Digest[/bold yellow]: {local_digest}")
 
     latest_image = client.images.pull(imageName)
     latest_digest = latest_image.attrs["RepoDigests"][0].split("@")[1]
-    cl.print(f"[bold yellow]Latest Digest[/bold yellow]: {latest_digest}")
+    # cl.print(f"[bold yellow]Latest Digest[/bold yellow]: {latest_digest}")
     if latest_digest != local_digest:
         cl.print(
-            "[bold yellow]Version:[/bold yellow] [green]new version available![/green]"
+            "[bold yellow]Version:[/bold yellow] [green]NEW version available![/green]"
         )
         return True
     else:
