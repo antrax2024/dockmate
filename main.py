@@ -4,7 +4,7 @@ import os
 
 load_dotenv()  # Load environment variables from .env file
 
-containers_to_watch: list[str] = os.environ.get("CONTAINERS_TO_WATCH")
+ctToWatch: list[str] = os.environ.get("CONTAINERS_TO_WATCH")
 
 
 def main() -> None:
@@ -26,4 +26,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     # main()
-    print(f"{containers_to_watch}")
+    for ct in ctToWatch.split(",") if isinstance(ctToWatch, str) else []:
+        print(f"Checking container: {ct}")
