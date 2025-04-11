@@ -6,7 +6,7 @@ from docker.models.containers import Container
 
 load_dotenv()  # Load environment variables from .env file
 cl = Console()
-client: docker.DockerClient = docker.from_env()
+
 ctToWatch: list[str] = os.environ.get("CONTAINERS_TO_WATCH").split(",")
 
 
@@ -90,11 +90,13 @@ def recreateContainer(container: Container) -> Container:
 
 
 def getContainers():
+    client: docker.DockerClient = docker.from_env()
     containers = client.containers.list()
     return containers
 
 
 def checkForNewVersion(imageName):
+    client: docker.DockerClient = docker.from_env()
     local_image = client.images.get(imageName)
 
     local_digest = local_image.attrs["RepoDigests"][0].split("@")[1]
