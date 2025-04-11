@@ -1,7 +1,10 @@
 import docker
 from dotenv import load_dotenv
+import os
 
 load_dotenv()  # Load environment variables from .env file
+
+containers_to_watch: list[str] = os.environ.get("CONTAINERS_TO_WATCH")
 
 
 def main() -> None:
@@ -22,4 +25,5 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    # main()
+    print(f"{containers_to_watch}")
