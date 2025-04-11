@@ -43,6 +43,16 @@ def checkForNewVersion(imageName):
     latest_image = client.images.pull(imageName)
     latest_digest = latest_image.attrs["RepoDigests"][0].split("@")[1]
     cl.print(f"[bold yellow]Latest Digest[/bold yellow]: {latest_digest}")
+    if latest_digest != local_digest:
+        cl.print(
+            "[bold yellow]Version:[/bold yellow] [green]new version available![/green]"
+        )
+        return True
+    else:
+        cl.print(
+            "[bold yellow]Version:[/bold yellow] [gray]NO new version available![/gray]"
+        )
+        return False
 
 
 if __name__ == "__main__":
