@@ -33,4 +33,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-    cl.print("ok")
+    with cl.status(status="Gonha"):
+        cl.print("mama ....")
