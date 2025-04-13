@@ -18,9 +18,9 @@ def main() -> None:
         with cl.status(status="Working..."):  # Start a status bar
             containers = getContainers()
             for container in containers:
-                printLine()
-                cl.log(f"[bold yellow]Checking:[/bold yellow] {container.name}")
                 if container.name in ctToWatch:
+                    printLine()
+                    cl.log(f"[bold yellow]Checking:[/bold yellow] {container.name}")
                     cl.log("[bold yellow]Watch: [/bold yellow] [green]True[/green]")
                     if checkForNewVersion(container.image.tags[0]):
                         cl.log(
@@ -29,12 +29,11 @@ def main() -> None:
                         recreateContainer(container=container)
                         cl.log("[[bold green]OK[/ bold green]]")
 
-                else:
-                    cl.log("[bold yellow]Watch: [/bold yellow] [red]False[/red]")
+                    printLine()
 
-                cl.log("waiting for next check...")
-                printLine()
-                time.sleep(5)
+                    cl.log("waiting for next check...")
+
+                # time.sleep(5)
 
         cl.log(f"\n\nChecking again in {TIME_MAIN_LOOP} seconds...")
         time.sleep(TIME_MAIN_LOOP)
