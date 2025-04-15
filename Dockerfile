@@ -11,11 +11,11 @@ COPY . /app
 COPY .env /app/.env
 
 # Create virtual environment
-RUN uv venv
+RUN uv venv --python 3.13
 # Install dependencies
 RUN uv sync
 
 
 # Command to run the application
-CMD uv run main.py
+CMD uv run docker-watch
 
