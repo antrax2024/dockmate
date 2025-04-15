@@ -37,6 +37,15 @@ def recreateContainer(container: Container) -> Container:
     # Coletar configurações relevantes
     config = {}
 
+    # Coletar restart policy
+    restart_policy = info["HostConfig"]["RestartPolicy"]
+    config = {
+        "restart_policy": {
+            "Name": restart_policy["Name"],
+            "MaximumRetryCount": restart_policy["MaximumRetryCount"],
+        }
+    }
+
     # Comando
     if info["Config"]["Cmd"]:
         config["command"] = info["Config"]["Cmd"]
@@ -81,7 +90,10 @@ def recreateContainer(container: Container) -> Container:
 
     # 5. Criar e iniciar o novo container
     new_container = client.containers.create(
-        image=image_name, name=container_name, detach=True, **config
+        image=image_name,
+        name=container_name,
+        detach=True,
+        **config,
     )
 
     new_container.start()
