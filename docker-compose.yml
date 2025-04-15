@@ -1,6 +1,6 @@
 services:
     web:
-        container_name: dockerwatch
+        container_name: docker-watch
         restart: always
 
         build:
