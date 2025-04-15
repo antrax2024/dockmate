@@ -18,5 +18,5 @@ RUN uv sync
 
 
 # Command to run the application
-CMD uv run docker-watch
+ENTRYPOINT [ "uv run docker-whatch" ] uv run docker-watch
 
