@@ -1,5 +1,6 @@
-FROM python:3.12-slim-bookworm
+FROM python:3.14.0a7-alpine3.21
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
 
 ENV TZ=America/Sao_Paulo
 
