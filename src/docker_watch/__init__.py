@@ -1,0 +1,47 @@
+from .kernel import (
+    cl,
+    getContainers,
+    checkForNewVersion,
+    ctToWatch,
+    printLine,
+    recreateContainer,
+)
+import os
+import time
+
+# Constants
+TIME_MAIN_LOOP = int(os.getenv(key="TIME_MAIN_LOOP", default="7200"))
+
+
+def main() -> None:
+    try:
+        while True:
+            with cl.status(status="Working..."):  # Start a status bar
+                containers = getContainers()
+                for container in containers:
+                    if container.name in ctToWatch:
+                        printLine()
+                        cl.log(f"[bold yellow]Checking:[/bold yellow] {container.name}")
+                        cl.log("[bold yellow]Watch: [/bold yellow] [green]True[/green]")
+                        if checkForNewVersion(container.image.tags[0]):
+                            cl.log(
+                                f"[bold yellow]Action: [/bold yellow] [green]Recreating container[/green] [ {container.name}]"
+                            )
+                            recreateContainer(container=container)
+                            cl.log("[[bold green]OK[/ bold green]]")
+
+                        printLine()
+
+                        cl.log("waiting for next check...")
+
+                    # time.sleep(5)
+
+            cl.log(f"\n\nChecking again in {TIME_MAIN_LOOP} seconds...")
+            time.sleep(TIME_MAIN_LOOP)
+    except KeyboardInterrupt:
+        cl.log("[bold red]Program interrupted by user. Exiting...[/bold red]")
+        return
+
+
+if __name__ == "__main__":
+    main()
