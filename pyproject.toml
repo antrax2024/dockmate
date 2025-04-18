@@ -1,12 +1,14 @@
 [project]
 name = "docker-watch"
-version = "0.1.0"
-description = "Add your description here"
+version = "0.1.2"
+description = "Monitors a list of Docker containers and upgrades them when new images are released."
 readme = "README.md"
 authors = [{ name = "Antrax", email = "fredcox@gmail.com" }]
 requires-python = ">=3.13"
 dependencies = [
     "black>=25.1.0",
+    "click>=8.1.8",
+    "confz>=2.1.0",
     "docker>=7.1.0",
     "dotenv>=0.9.9",
     "rich>=14.0.0",

@@ -5,6 +5,7 @@ from typing import Any, Optional
 import docker
 import docker.errors
 import docker.models.containers
+import time
 
 load_dotenv()  # Load environment variables from .env file
 cl = Console()
@@ -149,6 +150,36 @@ def checkForNewVersion(imageName: str) -> bool:
             "[bold yellow]Version:[/bold yellow] [green]NO new version available![/green]"
         )
         return False
+
+
+def monitorContainers(ctToWatch: list[str], time_main_loop: int) -> None:
+    try:
+        while True:
+            with cl.status(status="Working..."):  # Start a status bar
+                containers = getContainers()
+                for container in containers:
+                    if container.name in ctToWatch:
+                        printLine()
+                        cl.log(f"[bold yellow]Checking:[/bold yellow] {container.name}")
+                        cl.log("[bold yellow]Watch: [/bold yellow] [green]True[/green]")
+                        if checkForNewVersion(container.image.tags[0]):
+                            cl.log(
+                                f"[bold yellow]Action: [/bold yellow] [green]Recreating container[/green] [ {container.name}]"
+                            )
+                            recreateContainer(container=container)
+                            cl.log("[[bold green]OK[/ bold green]]")
+
+                        printLine()
+
+                        cl.log("waiting for next check...")
+
+                    # time.sleep(5)
+
+            cl.log(f"\n\nChecking again in {time_main_loop} seconds...")
+            time.sleep(time_main_loop)
+    except KeyboardInterrupt:
+        cl.log("[bold red]Program interrupted by user. Exiting...[/bold red]")
+        return
 
 
 if __name__ == "__main__":
