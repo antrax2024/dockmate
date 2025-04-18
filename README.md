@@ -4,6 +4,14 @@
   <img src="assets/banner-logo.jpg" alt="DockMate Logo">
 </p>
 
+<div align="center">
+  <span>
+    <img src="https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fantrax2024%2Fdockmate%2Frefs%2Fheads%2Fmain%2Fpyproject.toml" alt="Python Version" />
+    <img src="https://img.shields.io/github/license/antrax2024/dockmate" alt="License" />
+    <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code style: black" />
+  </span>
+</div>
+
 **dockmate** is a Python application that monitors a list of specified Docker containers and automatically upgrades them when new images are released.
 
 This application runs continuously and, as soon as it detects a new remote **image:tag** version, automatically updates the container to the latest version seamlessly.
