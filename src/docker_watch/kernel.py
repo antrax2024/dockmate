@@ -181,6 +181,4 @@ def monitorContainers(ctToWatch: list[str], time_main_loop: int) -> None:
 
 
 if __name__ == "__main__":
-    client = docker.from_env()
-    container = client.containers.get("homepage")
-    recreateContainer(container)
+    pass

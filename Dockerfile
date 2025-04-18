@@ -17,7 +17,6 @@ WORKDIR /app
 
 # Copy the application files
 COPY . /app
-COPY .env /app/.env
 
 RUN chown -R ${USER_NAME}:${GROUP_NAME} /app
 
@@ -25,8 +24,8 @@ RUN chown -R ${USER_NAME}:${GROUP_NAME} /app
 USER ${USER_NAME}
 
 # Create virtual environment
-RUN uv venv --python 3.14
+RUN uv venv --python 3.13
 
 # Command to run the application
-CMD uv run docker-watch 
+CMD uv run docker-watch -c /app/config/config.yaml
 

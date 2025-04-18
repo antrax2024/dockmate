@@ -51,6 +51,7 @@ def cli(config_file) -> None:
 
     AppConfig.CONFIG_SOURCES = FileSource(file=config_file)
     appConfig = AppConfig()
+    os.environ["DOCKER_HOST"] = appConfig.docker_host
     monitorContainers(
         ctToWatch=appConfig.containers,
         time_main_loop=appConfig.time_main_loop,
