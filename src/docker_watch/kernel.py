@@ -143,11 +143,13 @@ def checkForNewVersion(imageName: str) -> bool:
     latest_digest = latest_image.attrs["RepoDigests"][0].split("@")[1]
     # cl.log(f"[bold yellow]Latest Digest[/bold yellow]: {latest_digest}")
     if latest_digest != local_digest:
-        cl.log("[bold yellow]Version:[/bold yellow] [red]NEW version available![/red]")
+        cl.log(
+            "[bold yellow]Version\t\t:[/bold yellow] [red]NEW version available![/red]"
+        )
         return True
     else:
         cl.log(
-            "[bold yellow]Version:[/bold yellow] [green]NO new version available![/green]"
+            "[bold yellow]Version\t\t:[/bold yellow] [green]NO new version available![/green]"
         )
         return False
 
@@ -156,24 +158,20 @@ def monitorContainers(ctToWatch: list[str], time_main_loop: int) -> None:
     try:
         while True:
             with cl.status(status="Working..."):  # Start a status bar
-                containers = getContainers()
-                for container in containers:
-                    if container.name in ctToWatch:
+                for index, ct in enumerate(ctToWatch):
+                    if ct in ctToWatch:
+                        container = docker.from_env().containers.get(ct)
                         printLine()
-                        cl.log(f"[bold yellow]Checking:[/bold yellow] {container.name}")
-                        cl.log("[bold yellow]Watch: [/bold yellow] [green]True[/green]")
-                        if checkForNewVersion(container.image.tags[0]):
+                        cl.log(
+                            f"[bold yellow]Container\t:[/bold yellow] {index+1}/{len(ctToWatch)} "
+                        )
+                        cl.log(f"[bold yellow]Checking\t:[/bold yellow] {ct}")
+                        if checkForNewVersion(container.image.tags[0]):  # type: ignore
                             cl.log(
-                                f"[bold yellow]Action: [/bold yellow] [green]Recreating container[/green] [ {container.name}]"
+                                f"[bold yellow]Action\t: [/bold yellow] [green]Recreating container[/green] [ {container.name}]"
                             )
                             recreateContainer(container=container)
                             cl.log("[[bold green]OK[/ bold green]]")
-
-                        printLine()
-
-                        cl.log("waiting for next check...")
-
-                    # time.sleep(5)
 
             cl.log(f"\n\nChecking again in {time_main_loop} seconds...")
             time.sleep(time_main_loop)

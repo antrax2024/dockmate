@@ -1,11 +1,10 @@
-from email.policy import default
+import os
 import sys
-from unittest.mock import DEFAULT
 import click
-
 from .config import AppConfig, FileSource, createConfigFile
 from .constants import APP_NAME, APP_VERSION, DEFAULT_CONFIG_FILE
-import os
+from .kernel import monitorContainers
+
 
 CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
 
@@ -52,4 +51,7 @@ def cli(config_file) -> None:
 
     AppConfig.CONFIG_SOURCES = FileSource(file=config_file)
     appConfig = AppConfig()
-    click.echo(message=f"Config: {appConfig}")
+    monitorContainers(
+        ctToWatch=appConfig.containers,
+        time_main_loop=appConfig.time_main_loop,
+    )
