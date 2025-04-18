@@ -1,6 +1,6 @@
 services:
     web:
-        container_name: dockerautoupdate
+        container_name: dockmate
         restart: always
 
         build:

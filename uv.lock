@@ -93,8 +93,8 @@ wheels = [
 ]
 
 [[package]]
-name = "dockerautoupdate"
-version = "0.1.4"
+name = "dockmate"
+version = "0.1.5"
 source = { editable = "." }
 dependencies = [
     { name = "click" },

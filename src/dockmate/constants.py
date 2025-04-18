@@ -2,9 +2,9 @@
 import os
 
 
-APP_VERSION = "0.1.4"
+APP_VERSION = "0.1.5"
 # This is the name of the application.
-APP_NAME = "dockerautoupdate"
+APP_NAME = "dockmate"
 
 DEFAULT_CONFIG_FILE = os.path.join(
     os.path.expanduser(path="~"), ".config", f"{APP_NAME}", "config.yaml"
