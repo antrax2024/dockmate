@@ -2,7 +2,7 @@
 import os
 
 
-APP_VERSION = "0.1.2"
+APP_VERSION = "0.1.3"
 # This is the name of the application.
 APP_NAME = "docker-watch"
 
