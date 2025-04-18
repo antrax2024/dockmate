@@ -1,7 +1,7 @@
 [project]
 name            = "dockmate"
-version         = "0.1.5"
-description     = "Monitors a list of Docker containers and upgrades them when new images are released."
+version         = "0.1.6"
+description     = "Monitors a list of specified Docker containers and automatically upgrades them when new images are released."
 readme          = "README.md"
 license         = { text = "MIT" }
 authors         = [{ name = "Antrax", email = "fredcox@gmail.com" }]

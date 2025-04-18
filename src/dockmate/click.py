@@ -19,7 +19,7 @@ CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
     help=f"Specifies the file config.yaml file (default: {DEFAULT_CONFIG_FILE})",
 )
 def cli(config_file) -> None:
-    """Monitors a list of Docker containers and upgrades them when new images are released."""
+    """Monitors a list of specified Docker containers and automatically upgrades them when new images are released."""
     click.echo(message=f"{APP_NAME} v{APP_VERSION}\n")
 
     if config_file:
