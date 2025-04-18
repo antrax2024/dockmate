@@ -1,5 +1,5 @@
 [project]
-name            = "dockerwatch"
+name            = "dockerautoupdate"
 version         = "0.1.4"
 description     = "Monitors a list of Docker containers and upgrades them when new images are released."
 readme          = "README.md"
@@ -8,7 +8,7 @@ requires-python = ">=3.13"
 dependencies    = ["click>=8.1.8", "confz>=2.1.0", "docker>=7.1.0", "rich>=14.0.0"]
 
 [project.scripts]
-dockerwatch = "dockerwatch:main"
+dockerautoupdate = "dockerautoupdate:main"
 
 [build-system]
 requires      = ["hatchling"]

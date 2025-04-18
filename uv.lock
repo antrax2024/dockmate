@@ -93,7 +93,7 @@ wheels = [
 ]
 
 [[package]]
-name = "dockerwatch"
+name = "dockerautoupdate"
 version = "0.1.4"
 source = { editable = "." }
 dependencies = [
