@@ -1,6 +1,6 @@
 [project]
 name            = "dockerwatch"
-version         = "0.1.3"
+version         = "0.1.4"
 description     = "Monitors a list of Docker containers and upgrades them when new images are released."
 readme          = "README.md"
 authors         = [{ name = "Antrax", email = "fredcox@gmail.com" }]
