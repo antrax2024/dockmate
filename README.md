@@ -29,23 +29,31 @@ uv pip install dockmate
 
 ### Docker Container (Recomended)
 
-You can run **dockmate** as a Docker container. Pull the image from [Docker Hub](https://hub.docker.com/) (replace `yourusername` with the actual username or organization if applicable):
+You can run **dockmate** as a docker container, which is the official and recommended way.
+
+1. Clone the git repository:
 
 ```bash
-docker pull yourusername/dockmate:latest
+git clone https://github.com/antrax2024/dockmate.git
 ```
 
-To run the container, you need to mount the Docker socket and your configuration file:
+2. Edit the **config/config.yaml** file with the necessary parameters for your case.
 
 ```bash
-docker run -d \
-  --name dockmate \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v /path/to/your/config.yaml:/root/.config/dockmate/config.yaml \
-  yourusername/dockmate:latest
+nvim ./config/config.yaml
 ```
 
-*Note: Ensure the path `/path/to/your/config.yaml` points to your actual configuration file on the host.*
+3. Start the container:
+
+```bash
+docker compose up -d --build
+```
+
+4. To view logs, run the following command:
+
+```bash
+docker logs -f dockmate
+```
 
 ### Arch User Repository (AUR)
 
@@ -60,9 +68,6 @@ or
 ```bash
 paru -S dockmate
 ```
-
-
-
 
 ## Command-Line Interface
 
