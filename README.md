@@ -61,6 +61,9 @@ or
 paru -S dockerautoupdate
 ```
 
+
+
+
 ## Command-Line Interface
 
 The application uses `click` for its command-line interface.
