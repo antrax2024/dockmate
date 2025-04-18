@@ -1,6 +1,12 @@
 # dockmate
 
+<p align="center">
+  <img src="assets/banner-logo.jpg" alt="DockMate Logo">
+</p>
+
 **dockmate** is a Python application that monitors a list of specified Docker containers and automatically upgrades them when new images are released.
+
+This application runs continuously and, as soon as it detects a new remote **image:tag** version, automatically updates the container to the latest version seamlessly.
 
 ## Features
 

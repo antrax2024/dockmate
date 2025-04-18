@@ -3,9 +3,14 @@ name            = "dockmate"
 version         = "0.1.5"
 description     = "Monitors a list of Docker containers and upgrades them when new images are released."
 readme          = "README.md"
+license         = { text = "MIT" }
 authors         = [{ name = "Antrax", email = "fredcox@gmail.com" }]
 requires-python = ">=3.13"
 dependencies    = ["click>=8.1.8", "confz>=2.1.0", "docker>=7.1.0", "rich>=14.0.0"]
+
+[project.urls]
+homepage   = "https://github.com/antrax2024/dockmate"
+Repository = "https://github.com/antrax2024/dockmate"
 
 [project.scripts]
 dockmate = "dockmate:main"
