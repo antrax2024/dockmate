@@ -1,14 +1,15 @@
 # dockmate
 
 <p align="center">
-  <img src="assets/banner-logo.jpg" alt="DockMate Logo">
+  <img src="https://raw.githubusercontent.com/antrax2024/dockmate/refs/heads/main/assets/banner-logo.jpg" alt="DockMate Logo">
 </p>
 
 <div align="center">
   <span>
+    <img alt="PyPI - Version" src="https://img.shields.io/pypi/v/dockmate">
     <img src="https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fantrax2024%2Fdockmate%2Frefs%2Fheads%2Fmain%2Fpyproject.toml" alt="Python Version" />
-    <img src="https://img.shields.io/github/license/antrax2024/dockmate" alt="License" />
-    <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code style: black" />
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/antrax2024/dockmate">
+    <img alt="PyPI - License" src="https://img.shields.io/pypi/l/dockmate">
   </span>
 </div>
 
