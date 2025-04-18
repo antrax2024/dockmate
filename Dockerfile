@@ -27,5 +27,5 @@ USER ${USER_NAME}
 RUN uv venv --python 3.13
 
 # Command to run the application
-CMD uv run docker-watch -c /app/config/config.yaml
+CMD uv run dockerwatch -c /app/config/config.yaml
 
